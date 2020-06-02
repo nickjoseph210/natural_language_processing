@@ -14,7 +14,8 @@ To develop an NLP model that predicts which language is used in a GitHub reposit
 
 Using natural language processing (NLP), we were asked to predict the programming language contained in hundreds of Github repositories based solely on the README files for that repository.  After briefly discussing the project and analyzing the data we pulled in, we formed a simple null hypothesis ('H_0') that the length of the README file would be a good indicator of the programming language used.  Provided information that Python (the language used throughout this project) was a preferred language amongst programmers becuase of its strict adherence to documentation guidelines, we assumed that longer README files pointed to program contents being written in Python as opposed to other languages like C# ('C-sharp') or Java.
 
-After acquiring our dataset using Python and its library 'BeautifulSoup', we explored our findings to actually 'see' our findings through various visualizations made possible with Matplotlib and Seaborn.  [COMPLETE AS WE GO]
+After acquiring our dataset using Python and its library 'BeautifulSoup', we explored our findings to actually 'see' them through various visualizations made possible with Matplotlib and Seaborn.  Some of what we found follows:
+
 
 ## Glossary of Terms
 
@@ -31,6 +32,14 @@ To better understand our mission, it should be noted that jargon is rampant in e
 **JSON** - although technically it's short for 'JavaScript Object Notation,' JSON actually comes in quite handy for most people.  When you get online and go to a website, you are actually going to a server.  The server is kind of the gatekeeper that determines your elibibility to access the information you want from the web application.  What JSON does is send you back that information in a human-readable format.  In other words, it takes complicated computer language and pretties it up for us to read.
 
 **Pandas** - a library written specifically for our chosen programming langauge (Python), Pandas takes information and returns it to us in a vivid, easy-to-read table format.  The table consists of three main parts: rows, columns, and the data itself.  Each vertical column is a feature of the dataset, whereas each horizontal row is an event or occurence within the dataset.  There is a whole lot that goes on behind the scenes to make this possible, but the end result is all that matters: an appealing yet informative look at data.
+
+**Tokenization** - the process of breaking something down into more discrete units.  You don't swallow a whole burger, you take bites. 
+
+**Normalizing** - to normalize data is to restructure it so that it looks and reads the same way across all records.  In this project, we normalize our data to make it more unifrom (give it less variety) for NLP processing.
+
+**Lemmatize** - to 'lemmatize' a word means to strip the entire word down to its base word.  Computationally more expensive than stemming (a similar process that reduces a word down to its root but less gracefully), lemmatized words still retain their meaning.  Reading lemmatized text you still get the gist of the message even though the excess letters and characters are gone.
+
+**Stopwords** - words not unique to our situation.  They are words like 'a, an, the, like' that can be found in any document and can be thought of as filler words.  They can be eliminated from our analyzed text while still preserving the general meaning of the text itself.
 
 ## Natural Language Processing 
 
@@ -79,11 +88,22 @@ The Python functions written for this phase of the project are designed to get t
 
 ### Preparation
 
-From here, because the JSON format is essentially a list of dictionaries, we can easily convert the data into the more familiar Pandas dataframe or Series for preparation.  In this format, we can decipher the data and develop some 'horse-sense' predictions on what it tells us.   
+From here, because the JSON format is essentially a list of dictionaries, we can easily convert the data into the more familiar Pandas dataframe or Series for preparation.  In this format, we can see the data easily and develop some 'horse-sense' predictions on what it tells us.   
 
-One of the key tools in our repertoire is the 'Natural Language Toolkit,' imported into our notebooks as 'nltk.'  NLTK is a suite of resources ("libraries") that aims to help machines understand human language.  Think of it as an actual library, filled with books.  Those books are used to help break letters down int
+Part of our job is to make the data as uniform as possible.  With letters and words as our interest, you can imagine the variation in both when it comes to the global span of GitHub users.  It is our job to strip those occurences from our data as much as possible.  
 
+This preparation step is extensive, but through the functions developed, it does exacly that.  We end up with a dataframe with columns representing cleaned, lemmatized, and tokenized README data in which the stopwords have been removed.  
+
+There were few tools used that may need some further explanation.  In cleaning the data, we implemented a meta-language called 'regex' (short for 'Regular Expressions') that can go through any type of data and remove the parts we don't want.  From accent marks to unwanted symbols and spaces, it is extremely useful in that it helps you make your data uniform, and not just in Python, but in other programming languages as well. 
+
+Another essential device in any NLP repertoire, the NLTK ('Natural Language Toolkit') is imported into our notebooks as 'nltk.'  It is a suite of resources ("libraries") that aims to help machines understand human language.  Think of it as an actual library, filled with books.  Each book helps us do a slew of things to the letters and words we choose, all with the goal of normalizing our data.  
+
+# Exploration
+
+Once the README data has been normalized, we proceeded to visualize our data using the Matplotlib and Seaborn libraries. 
 
 ## Modeling
 
-Because we're comparing categorical variables (languages that are either present or not presentFirst model run was a logistic regression mode 
+
+
+Because we're comparing categorical variables (languages that are either present or not present) the first model run was a logistic regression model.  The result: an accuracy of .702, telling us this first predictive model is right about 70% of the time.  This was in line with Ravinder's guess (for the record, almost exactly) because of our sampling of only 5 from our total number of README files. 
