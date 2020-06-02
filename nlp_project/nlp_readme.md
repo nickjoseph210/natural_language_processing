@@ -1,5 +1,14 @@
 # The Tree Musketeers
 
+## Mission
+
+To develop an NLP model that predicts which language is used in a GitHub repository based solely on its README file.
+
+### Hypotheses # 1
+
+- $H_0$ There is NO CORRELATION between the length of a repo's README file and its underlying programming language
+- $H_a$ There IS A CORRELATION between the length of a repo's README file and its underlying programming language
+
 
 ## Executive Summary 
 
@@ -7,8 +16,23 @@ Using natural language processing (NLP), we were asked to predict the programmin
 
 After acquiring our dataset using Python and its library 'BeautifulSoup', we explored our findings to actually 'see' our findings through various visualizations made possible with Matplotlib and Seaborn.  [COMPLETE AS WE GO]
 
+## Glossary of Terms
 
-# Natural Language Processing 
+To better understand our mission, it should be noted that jargon is rampant in every industry, and Data Science is no different.  Industry terms get tossed around like shotputs at an Olympic qualifier, so it is easy for the outsider to get mired down in our everyday verbiage.  Below is a simplified glossary of terms to help in understanding exactly what it is we're talking about.
+
+**Webscraping** - Going through the source code on a website and selecting the data we want based on the information we find.  Think of a web page as a human body: what you see when you go to a website is the skin, but underneath it are the muscles and bones supporting that skin.  Webscraping is like using an MRI or X-Ray to see and study those supporting structures in which we're most interested.  
+
+**API** - short for 'Application Programming Interface,' an API is basically a set of rules that allow two software programs talk to each other.  You use APIs on a daily basis - that app on your iPhone, for instance.  Apple has an API full of code that app developers can 'borrow' with just a few commands instead of having to rewrite it all every time they need it.
+
+**Repo** - short for 'repository.'  You may know it as the term 'directory,' which is a place on your computer where you store your files.  A 'repo' is exactly that, but instead of those files being stored on *your* computer, they are housed within the GitHub supercomputer.
+
+**README** - a common file found in any GitHub repo that describes the details of the repo's contents.  There are no standards on length or content, so the information on a README can be as extensive as either a Tolstoy novel or a fortune cookie.  (You, dear reader, have stumbled upon a Tolstoy.)
+
+**JSON** - although technically it's short for 'JavaScript Object Notation,' JSON actually comes in quite handy for most people.  When you get online and go to a website, you are actually going to a server.  The server is kind of the gatekeeper that determines your elibibility to access the information you want from the web application.  What JSON does is send you back that information in a human-readable format.  In other words, it takes complicated computer language and pretties it up for us to read.
+
+**Pandas** - a library written specifically for our chosen programming langauge (Python), Pandas takes information and returns it to us in a vivid, easy-to-read table format.  The table consists of three main parts: rows, columns, and the data itself.  Each vertical column is a feature of the dataset, whereas each horizontal row is an event or occurence within the dataset.  There is a whole lot that goes on behind the scenes to make this possible, but the end result is all that matters: an appealing yet informative look at data.
+
+## Natural Language Processing 
 
 Natural Language Processing (NLP) is a subfield of Artificial Intelligence (AI) concerned most specifically with human - computer interactions.  It involves assembling a body of data (a 'corpus') and reading through each aspect of it in search of patterns for prediction.  Google's latest Gmail installment provide us with a clear, although very simple, example:
 
@@ -16,7 +40,7 @@ People are creatures of habit, and in typing an email, Google's NLP algorithm wi
 
 There are many other uses for NLP (chatbots that 'assist' you in your online purchasing endeavors, the spam filter on your personal / business email accounts, etc), and its ability to predict patterns of action / behavior is streamlining business at an ever-increasing rate.
 
-## Project Background
+## Project Introduction
 
 Beginning 1 June 2020, our team was tasked with building an nlp (natural language processing) model to predict the programming language of a github repository based solely on the text of the README file. 
 
@@ -36,5 +60,30 @@ Team members include Shay Altshue, Ravinder Singh, and Nick Joseph.
 
 ## Scope:
 
-Undertaking such a project involves heavy planning at its outset, for there are myriad of ways to collect data.  Once 
+In our efforts to complete this project, we followed the typical Data Science Pipeline:
+    1.) Acquisition - getting the data;
+    2.) Preparation - cleaning and deciding what to do and how to use the data we've acquired;
+    3.) Split - taking the data and dividing it into train, validate, and test portions; 
+    4.) Exploration - visualizing the training data so we can see what and how things are related; 
+    5.) Scaling - scaling our data to values between 0 and 1 to improve our model's likelihood of success; 
+    6.) Modeling - devising a baseline model to run various other models (Decision Trees, etc) against to test our null hypothesis; and
+    7.) Delivery - a final notebook for presentation and peer review 
 
+### Acquisition
+
+Because Github frowns on webscraping, acquiring the data for our project involved dealing directly with GitHub's API (Application Programming Interface).  While both deal with the harvesting of data, using GitHub's API required an access token, which is basically your computer telling GitHub, "Here is everything about me and my user.  Is it okay if we come in and look around?"  
+
+Webscraping (or, 'scraping') GitHub requires no credentials and is regulated only by the ethics of the person scraping their page.  All someone has to do is right click on a page, follow a few menu choices, and then have all the page's information right in front of them.  Thus, it is easy to see why a site filled with ideas on the future of computing would not take a shine to something so easy and anonymous as a webscrape.
+
+The Python functions written for this phase of the project are designed to get the README portion from the various repos on the GitHub API and return it to us in a JSON format.  
+
+### Preparation
+
+From here, because the JSON format is essentially a list of dictionaries, we can easily convert the data into the more familiar Pandas dataframe or Series for preparation.  In this format, we can decipher the data and develop some 'horse-sense' predictions on what it tells us.   
+
+One of the key tools in our repertoire is the 'Natural Language Toolkit,' imported into our notebooks as 'nltk.'  NLTK is a suite of resources ("libraries") that aims to help machines understand human language.  Think of it as an actual library, filled with books.  Those books are used to help break letters down int
+
+
+## Modeling
+
+Because we're comparing categorical variables (languages that are either present or not presentFirst model run was a logistic regression mode 
